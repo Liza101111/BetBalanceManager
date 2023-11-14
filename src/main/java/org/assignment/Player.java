@@ -1,5 +1,7 @@
 package org.assignment;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.UUID;
 
 public class Player {
@@ -49,10 +51,22 @@ public class Player {
         }
     }
 
-    public void placeBet(int betAmount) {
+    public void placeBet(int betAmount, Match match) {
         if (betAmount > 0 && betAmount <= balance) {
             balance -= betAmount;
-            System.out.println("Bet placed. New balance: " + balance);
+            String betSide = match.getResult();
+
+            if("A".equals(betSide)){
+                // Player bet on the winning side
+                long winnings = (long) (betAmount * match.getRateA().doubleValue());
+                balance += winnings;
+                System.out.println("Bet placed on winning side. Winnings: " + winnings);
+            } else if("B".equals(betSide)){
+                System.out.println("Bet placed on losing side. You lost the bet.");
+            } else{
+                balance += betAmount;
+                System.out.println("Match ended in a draw. Coins returned.");
+            }
         } else {
             System.out.println("Invalid bet amount or insufficient funds.");
         }

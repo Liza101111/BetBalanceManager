@@ -63,13 +63,13 @@ public class Player {
             if (betAmount > 0 && betAmount <= balance) {
                 balance -= betAmount;
 
-                if(betSide.equals(MatchResult.A_WON.name())){
+                if(betSide.equals(MatchResult.A.name())){
                     // Player bet on the winning side
                     long winnings = BigDecimal.valueOf(betAmount * match.getRateA().doubleValue()).longValue();
                     balance += winnings;
                     totalWins++;
                     System.out.println("Bet placed on winning side A. Winnings: " + winnings);
-                } else if(betSide.equals(MatchResult.B_WON.name())){
+                } else if(betSide.equals(MatchResult.B.name())){
                     long winnings = BigDecimal.valueOf(betAmount * match.getRateB().doubleValue()).longValue();
                     balance += winnings;
                     totalWins++;

@@ -55,14 +55,13 @@ public class Player {
         }
     }
 
-    public void placeBet(int betAmount, Match match) {
+    public void placeBet(int betAmount, Match match, String betSide) {
 
         if(!placedBets.contains(match.getMatchId())) {
             placedBets.add(match.getMatchId());
 
             if (betAmount > 0 && betAmount <= balance) {
                 balance -= betAmount;
-                String betSide = match.getResult().name();
 
                 if(betSide.equals(MatchResult.A_WON.name())){
                     // Player bet on the winning side

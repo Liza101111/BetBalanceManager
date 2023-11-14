@@ -1,5 +1,6 @@
 package org.assignment;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -62,22 +63,25 @@ public class Player {
                 balance -= betAmount;
                 String betSide = match.getResult().name();
 
-                if(betSide.equals(MatchResult.A_WON)){
+                if(betSide.equals(MatchResult.A_WON.name())){
                     // Player bet on the winning side
-                    long winnings = (long) (betAmount * match.getRateA().doubleValue());
+                    long winnings = BigDecimal.valueOf(betAmount * match.getRateA().doubleValue()).longValue();
                     balance += winnings;
+                    totalWins++;
                     System.out.println("Bet placed on winning side A. Winnings: " + winnings);
-                } else if(betSide.equals(MatchResult.B_WON)){
-                    long winnings = (long) (betAmount * match.getRateB().doubleValue());
+                } else if(betSide.equals(MatchResult.B_WON.name())){
+                    long winnings = BigDecimal.valueOf(betAmount * match.getRateB().doubleValue()).longValue();
                     balance += winnings;
+                    totalWins++;
                     System.out.println("Bet placed on winning side B. Winnings: " + winnings);
-                } else if(betSide.equals(MatchResult.DRAW)){
+                } else if(betSide.equals(MatchResult.DRAW.name())){
                     balance += betAmount;
                     System.out.println("Match ended in a draw. Coins returned.");
                 } else{
                     System.out.println("Bet placed on losing side. You lost the bet.");
                 }
 
+                totalBets++;
                 System.out.println("New balance: " + balance);
             }else {
                 System.out.println("Invalid bet amount or insufficient funds.");

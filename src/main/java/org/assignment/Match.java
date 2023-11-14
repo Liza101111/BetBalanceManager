@@ -8,9 +8,9 @@ public class Match {
     private UUID matchId;
     private BigDecimal rateA;
     private BigDecimal rateB;
-    private String result;
+    private MatchResult result;
 
-    public Match(UUID matchId, BigDecimal rateA, BigDecimal rateB, String result) {
+    public Match(UUID matchId, BigDecimal rateA, BigDecimal rateB, MatchResult result) {
         this.matchId = matchId;
         this.rateA = rateA;
         this.rateB = rateB;
@@ -29,7 +29,7 @@ public class Match {
         return rateB;
     }
 
-    public String getResult() {
+    public MatchResult getResult() {
         return result;
     }
 }

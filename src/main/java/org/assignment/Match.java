@@ -16,6 +16,9 @@ public class Match {
         this.rateB = rateB;
         this.result = result;
     }
+    public Match(UUID matchId) {
+        this(matchId, BigDecimal.ONE, BigDecimal.ONE, MatchResult.DRAW);
+    }
 
     public UUID getMatchId() {
         return matchId;

@@ -3,6 +3,7 @@ package org.assignment;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.*;
 
 public class BettingDataProcessor {
@@ -36,6 +37,26 @@ public class BettingDataProcessor {
                     default:
                         System.out.println("Invalid operation: " + operation);
                 }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void processMatchData(String matchDataFilePath, MatchRegistry matchRegistry){
+        try(BufferedReader br = new BufferedReader(new FileReader(matchDataFilePath))){
+            String line;
+
+            while ((line = br.readLine()) != null){
+                String[] values = line.split(",");
+
+                UUID matchId = UUID.fromString(values[0]);
+                BigDecimal rateA = new BigDecimal(values[1]);
+                BigDecimal rateB = new BigDecimal(values[2]);
+                MatchResult result = MatchResult.valueOf(values[3]);
+
+                Match match = new Match(matchId, rateA, rateB, result);
+                matchRegistry.addMatch(match);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -54,19 +54,25 @@ public class Player {
     public void placeBet(int betAmount, Match match) {
         if (betAmount > 0 && betAmount <= balance) {
             balance -= betAmount;
-            String betSide = match.getResult();
+            String betSide = match.getResult().name();
 
-            if("A".equals(betSide)){
+            if(betSide.equals(MatchResult.A_WON)){
                 // Player bet on the winning side
                 long winnings = (long) (betAmount * match.getRateA().doubleValue());
                 balance += winnings;
-                System.out.println("Bet placed on winning side. Winnings: " + winnings);
-            } else if("B".equals(betSide)){
-                System.out.println("Bet placed on losing side. You lost the bet.");
-            } else{
+                System.out.println("Bet placed on winning side A. Winnings: " + winnings);
+            } else if(betSide.equals(MatchResult.B_WON)){
+                long winnings = (long) (betAmount * match.getRateB().doubleValue());
+                balance += winnings;
+                System.out.println("Bet placed on winning side B. Winnings: " + winnings);
+            } else if(betSide.equals(MatchResult.DRAW)){
                 balance += betAmount;
                 System.out.println("Match ended in a draw. Coins returned.");
+            } else{
+                System.out.println("Bet placed on losing side. You lost the bet.");
             }
+
+            System.out.println("New balance: " + balance);
         } else {
             System.out.println("Invalid bet amount or insufficient funds.");
         }

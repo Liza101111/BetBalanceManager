@@ -10,4 +10,8 @@ public class MatchRegistry {
     public Match getMatch(UUID matchId){
         return matches.computeIfAbsent(matchId, Match::new);
     }
+
+    public void addMatch(Match match){
+        matches.put(match.getMatchId(), match);
+    }
 }

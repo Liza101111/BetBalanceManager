@@ -1,6 +1,7 @@
 package org.assignment;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -88,6 +89,14 @@ public class Player {
             }
         }else{
             System.out.println("Player has already placed a bet on this match.");
+        }
+    }
+
+    public BigDecimal getWinRate() {
+        if (totalBets == 0) {
+            return BigDecimal.ZERO;
+        } else {
+            return new BigDecimal(totalWins).divide(new BigDecimal(totalBets), 2, RoundingMode.HALF_UP);
         }
     }
 

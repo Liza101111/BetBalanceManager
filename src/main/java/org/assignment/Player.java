@@ -2,9 +2,7 @@ package org.assignment;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class Player {
     private UUID playerId;
@@ -12,7 +10,10 @@ public class Player {
     private int totalBets;
     private int totalWins;
     private Set<UUID> placedBets;
-    private Set<IllegalAction> illegalActions = new HashSet<>();
+    private List<IllegalAction> illegalActions = new ArrayList<>();
+
+    private Map<UUID, Integer> betAmountsMap = new HashMap<>();
+    private Map<UUID, String> betSidesMap = new HashMap<>();
 
     private static final String SIDE_A = "A";
     private static final String SIDE_B = "B";
@@ -39,6 +40,10 @@ public class Player {
 
     public int getTotalWins() {
         return totalWins;
+    }
+
+    public List<IllegalAction> getIllegalActions() {
+        return illegalActions;
     }
 
     public void deposit(int amount) {
@@ -84,6 +89,8 @@ public class Player {
                     }
 
                     totalBets++;
+                    betAmountsMap.put(match.getMatchId(), betAmount);
+                    betSidesMap.put(match.getMatchId(), betSide);
                     System.out.println("New balance: " + balance);
                 }else {
                     illegalActions.add(IllegalAction.INVALID_BET_SIDE);
@@ -127,4 +134,30 @@ public class Player {
         }
     }
 
+    public UUID getMatchId() {
+        if (!placedBets.isEmpty()) {
+            return placedBets.iterator().next();
+        } else {
+            return null;
+        }
+    }
+
+    public Integer getBetAmount() {
+
+        if (!placedBets.isEmpty()) {
+            UUID firstBetId = placedBets.iterator().next();
+            return betAmountsMap.get(firstBetId);
+        } else {
+            return null;
+        }
+    }
+
+    public String getBetSide() {
+        if (!placedBets.isEmpty()) {
+            UUID firstBetId = placedBets.iterator().next();
+            return betSidesMap.get(firstBetId);
+        } else {
+            return null; // No betSide found
+        }
+    }
 }

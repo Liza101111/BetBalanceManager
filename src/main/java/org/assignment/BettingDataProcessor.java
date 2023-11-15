@@ -6,6 +6,8 @@ import java.util.*;
 
 public class BettingDataProcessor {
 
+    private long casinoBalance = 0;
+
     public void processPlayerData(String playerDataFilePath, PlayerRegistry playerRegistry, MatchRegistry matchRegistry){
         try(BufferedReader br = new BufferedReader(new FileReader(playerDataFilePath))) {
             String line;
@@ -78,7 +80,7 @@ public class BettingDataProcessor {
     }
 
     public void writeIllegitimatePlayers(String outputFilePath, PlayerRegistry playerRegistry) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
             List<Player> illegitimatePlayers = playerRegistry.getIllegitimatePlayers();
 
             for (Player player : illegitimatePlayers) {
@@ -95,6 +97,35 @@ public class BettingDataProcessor {
             }
         } catch (IOException e) {
             throw new RuntimeException("Error writing illegitimate players to file", e);
+        }
+    }
+
+    private long calculateMatchResultBalance(Match match) {
+
+        switch (match.getResult()) {
+            case A:
+                return -match.getRateB().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
+            case B:
+                return -match.getRateA().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
+            case DRAW:
+                return 0;
+            default:
+                throw new IllegalArgumentException("Unexpected match result: " + match.getResult());
+        }
+    }
+
+    private void calculateCasinoBalance(List<Match> matches) {
+        for (Match match : matches) {
+            casinoBalance += calculateMatchResultBalance(match);
+        }
+    }
+
+    public void writeCasinoBalance(String outputFilePath) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
+            writer.write((int) casinoBalance);
+            writer.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing casino balance to file", e);
         }
     }
 

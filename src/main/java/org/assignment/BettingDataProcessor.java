@@ -1,8 +1,6 @@
 package org.assignment;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -62,5 +60,22 @@ public class BettingDataProcessor {
             throw new RuntimeException(e);
         }
     }
+
+    private void writeLegitimatePlayers(String outputPath, PlayerRegistry playerRegistry) {
+
+        List<Player> legitimatePlayers = playerRegistry.getLegitimatePlayers();
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath))) {
+            for (Player player : legitimatePlayers) {
+                BigDecimal winRate = player.getWinRate();
+                String outputLine = String.format("%s %d %.2f", player.getPlayerId(), player.getBalance(), winRate);
+                writer.write(outputLine);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing legitimate players to file", e);
+        }
+    }
+
 
 }

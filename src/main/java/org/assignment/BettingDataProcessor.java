@@ -77,5 +77,25 @@ public class BettingDataProcessor {
         }
     }
 
+    public void writeIllegitimatePlayers(String outputFilePath, PlayerRegistry playerRegistry) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            List<Player> illegitimatePlayers = playerRegistry.getIllegitimatePlayers();
+
+            for (Player player : illegitimatePlayers) {
+                IllegalAction firstIllegalAction = player.getIllegalActions().get(0);
+                String matchId = player.getMatchId() != null ? player.getMatchId().toString() : "null";
+                String betAmount = player.getBetAmount() != null ? String.valueOf(player.getBetAmount()) : "null";
+                String betSide = player.getBetSide() != null ? player.getBetSide() : "null";
+
+                String outputLine = String.format("%s %s %s %s %s",
+                        player.getPlayerId(), firstIllegalAction, matchId, betAmount, betSide);
+
+                writer.write(outputLine);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing illegitimate players to file", e);
+        }
+    }
 
 }

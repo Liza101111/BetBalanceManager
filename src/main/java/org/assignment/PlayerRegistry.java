@@ -16,4 +16,11 @@ public class PlayerRegistry {
                 .sorted(Comparator.comparing(player -> player.getPlayerId().toString()))
                 .collect(Collectors.toList());
     }
+
+    public List<Player> getIllegitimatePlayers() {
+        return players.values().stream()
+                .filter(Player::hasIllegalAction)
+                .sorted(Comparator.comparing(player -> player.getPlayerId().toString()))
+                .collect(Collectors.toList());
+    }
 }

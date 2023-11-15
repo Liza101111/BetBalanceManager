@@ -60,35 +60,51 @@ public class Player {
         if(!placedBets.contains(match.getMatchId())) {
             placedBets.add(match.getMatchId());
 
-            if (betAmount > 0 && betAmount <= balance) {
+            if(betAmount > 0 && betAmount <= balance){
                 balance -= betAmount;
 
-                if(betSide.equals(MatchResult.A.name())){
-                    // Player bet on the winning side
-                    long winnings = BigDecimal.valueOf(betAmount * match.getRateA().doubleValue()).longValue();
-                    balance += winnings;
-                    totalWins++;
-                    System.out.println("Bet placed on winning side A. Winnings: " + winnings);
-                } else if(betSide.equals(MatchResult.B.name())){
-                    long winnings = BigDecimal.valueOf(betAmount * match.getRateB().doubleValue()).longValue();
-                    balance += winnings;
-                    totalWins++;
-                    System.out.println("Bet placed on winning side B. Winnings: " + winnings);
-                } else if(betSide.equals(MatchResult.DRAW.name())){
-                    balance += betAmount;
-                    System.out.println("Match ended in a draw. Coins returned.");
-                } else{
-                    System.out.println("Bet placed on losing side. You lost the bet.");
-                }
+                if(isValidBetSide(betSide)){
+                    switch (match.getResult()){
+                        case A:
+                            handleWinningBet(match.getRateA(), betAmount, "A");
+                            break;
+                        case B:
+                            handleWinningBet(match.getRateB(), betAmount, "B");
+                            break;
+                        case DRAW:
+                            handleDrawBet(betAmount);
+                            break;
+                        default:
+                            System.out.println("Unexpected match result. Unable to process the bet.");
+                    }
 
-                totalBets++;
-                System.out.println("New balance: " + balance);
+                    totalBets++;
+                    System.out.println("New balance: " + balance);
+                }else {
+                    System.out.println("Invalid bet side.");
+                }
             }else {
                 System.out.println("Invalid bet amount or insufficient funds.");
             }
         }else{
             System.out.println("Player has already placed a bet on this match.");
         }
+    }
+
+    private boolean isValidBetSide(String betSide) {
+        return betSide.equals("A") || betSide.equals("B");
+    }
+
+    private void handleWinningBet(BigDecimal rate, long betAmount, String side) {
+        long winnings = BigDecimal.valueOf(betAmount * rate.doubleValue()).longValue();
+        balance += winnings;
+        totalWins++;
+        System.out.println("Bet placed on winning side " + side + ". Winnings: " + winnings);
+    }
+
+    private void handleDrawBet(long betAmount) {
+        balance += betAmount;
+        System.out.println("Match ended in a draw. Coins returned.");
     }
 
     public BigDecimal getWinRate() {

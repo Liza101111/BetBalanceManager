@@ -12,6 +12,10 @@ public class Player {
     private int totalBets;
     private int totalWins;
     private Set<UUID> placedBets;
+    private Set<IllegalAction> illegalActions = new HashSet<>();
+
+    private static final String SIDE_A = "A";
+    private static final String SIDE_B = "B";
 
     public Player(UUID playerId) {
         this.playerId = playerId;
@@ -51,6 +55,7 @@ public class Player {
             balance -= amount;
             System.out.println("Withdrawal successful. New balance: " + balance);
         } else {
+            illegalActions.add(IllegalAction.INSUFFICIENT_BALANCE);
             System.out.println("Invalid withdrawal amount or insufficient funds.");
         }
     }
@@ -66,10 +71,10 @@ public class Player {
                 if(isValidBetSide(betSide)){
                     switch (match.getResult()){
                         case A:
-                            handleWinningBet(match.getRateA(), betAmount, "A");
+                            handleWinningBet(match.getRateA(), betAmount, SIDE_A);
                             break;
                         case B:
-                            handleWinningBet(match.getRateB(), betAmount, "B");
+                            handleWinningBet(match.getRateB(), betAmount, SIDE_B);
                             break;
                         case DRAW:
                             handleDrawBet(betAmount);
@@ -81,18 +86,25 @@ public class Player {
                     totalBets++;
                     System.out.println("New balance: " + balance);
                 }else {
+                    illegalActions.add(IllegalAction.INVALID_BET_SIDE);
                     System.out.println("Invalid bet side.");
                 }
             }else {
+                illegalActions.add(IllegalAction.INSUFFICIENT_BALANCE);
                 System.out.println("Invalid bet amount or insufficient funds.");
             }
         }else{
+            illegalActions.add(IllegalAction.MULTIPLE_BETS_ON_SAME_MATCH);
             System.out.println("Player has already placed a bet on this match.");
         }
     }
 
+    public boolean hasIllegalAction() {
+        return !illegalActions.isEmpty();
+    }
+
     private boolean isValidBetSide(String betSide) {
-        return betSide.equals("A") || betSide.equals("B");
+        return betSide.equals(SIDE_A) || betSide.equals(SIDE_B);
     }
 
     private void handleWinningBet(BigDecimal rate, long betAmount, String side) {

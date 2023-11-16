@@ -110,7 +110,7 @@ public class Player {
         }
 
         betsMap.put(match.getMatchId(), new BetInfo(betAmount, betSide));
-        System.out.println("New balance: " + balance);
+
     }
 
     public boolean hasIllegalAction() {

@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="implemented calculate casino Balance">
+    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="modified">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BetInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,6 +86,7 @@
       <updated>1699952860135</updated>
       <workItem from="1699952861573" duration="23883000" />
       <workItem from="1699994238886" duration="5232000" />
+      <workItem from="1700133884749" duration="12362000" />
     </task>
     <task id="LOCAL-00001" summary="Project set up">
       <created>1699953361918</created>
@@ -290,7 +291,28 @@
       <option name="project" value="LOCAL" />
       <updated>1700091186287</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="implement: Write result">
+      <created>1700093288969</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1700093288969</updated>
+    </task>
+    <task id="LOCAL-00031" summary="modified">
+      <created>1700141522232</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1700141522232</updated>
+    </task>
+    <task id="LOCAL-00032" summary="modified">
+      <created>1700144411008</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1700144411008</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,8 +330,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added operations-Bet,Deposit,Withdraw for Player" />
-    <MESSAGE value="Modified Bet calculation" />
     <MESSAGE value="Add MatchResult Enum class" />
     <MESSAGE value="Modified Match class" />
     <MESSAGE value="declared a Set called placedBets to keep track of the matches that one player can only place one bet on one match." />
@@ -333,6 +353,8 @@
     <MESSAGE value="add writeIllegitimatePlayers" />
     <MESSAGE value="add getTotalBets in Match" />
     <MESSAGE value="implemented calculate casino Balance" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented calculate casino Balance" />
+    <MESSAGE value="implement: Write result" />
+    <MESSAGE value="modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified" />
   </component>
 </project>

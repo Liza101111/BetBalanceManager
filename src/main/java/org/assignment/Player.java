@@ -12,9 +12,7 @@ public class Player {
     private Set<UUID> placedBets;
     private List<Operation> illegalActions = new ArrayList<>();
 
-    private Map<UUID, Integer> betAmountsMap = new HashMap<>();
-    private Map<UUID, String> betSidesMap = new HashMap<>();
-
+    private Map<UUID, BetInfo> betsMap = new HashMap<>();
     private static final String SIDE_A = "A";
     private static final String SIDE_B = "B";
 
@@ -46,11 +44,16 @@ public class Player {
         return illegalActions;
     }
 
+    public Map<UUID, BetInfo> getBetsMap() {
+        return betsMap;
+    }
+
     public void deposit(int amount) {
         if (amount > 0) {
             balance += amount;
             System.out.println("Deposit successful. New balance: " + balance);
         } else {
+            illegalActions.add(Operation.DEPOSIT);
             System.out.println("Invalid deposit amount.");
         }
     }
@@ -74,23 +77,8 @@ public class Player {
                 balance -= betAmount;
 
                 if(isValidBetSide(betSide)){
-                    switch (match.getResult()){
-                        case A:
-                            handleWinningBet(match.getRateA(), betAmount, SIDE_A);
-                            break;
-                        case B:
-                            handleWinningBet(match.getRateB(), betAmount, SIDE_B);
-                            break;
-                        case DRAW:
-                            handleDrawBet(betAmount);
-                            break;
-                        default:
-                            System.out.println("Unexpected match result. Unable to process the bet.");
-                    }
-
+                    handleBetResult(match, betAmount, betSide);
                     totalBets++;
-                    betAmountsMap.put(match.getMatchId(), betAmount);
-                    betSidesMap.put(match.getMatchId(), betSide);
                     System.out.println("New balance: " + balance);
                 }else {
                     illegalActions.add(Operation.BET);
@@ -104,6 +92,25 @@ public class Player {
             illegalActions.add(Operation.BET);
             System.out.println("Player has already placed a bet on this match.");
         }
+    }
+
+    private void handleBetResult(Match match, int betAmount, String betSide) {
+        switch (match.getResult()) {
+            case A:
+                handleWinningBet(match.getRateA(), betAmount, SIDE_A);
+                break;
+            case B:
+                handleWinningBet(match.getRateB(), betAmount, SIDE_B);
+                break;
+            case DRAW:
+                handleDrawBet(betAmount);
+                break;
+            default:
+                System.out.println("Unexpected match result. Unable to process the bet.");
+        }
+
+        betsMap.put(match.getMatchId(), new BetInfo(betAmount, betSide));
+        System.out.println("New balance: " + balance);
     }
 
     public boolean hasIllegalAction() {
@@ -142,22 +149,4 @@ public class Player {
         }
     }
 
-    public Integer getBetAmount() {
-
-        if (!placedBets.isEmpty()) {
-            UUID firstBetId = placedBets.iterator().next();
-            return betAmountsMap.get(firstBetId);
-        } else {
-            return null;
-        }
-    }
-
-    public String getBetSide() {
-        if (!placedBets.isEmpty()) {
-            UUID firstBetId = placedBets.iterator().next();
-            return betSidesMap.get(firstBetId);
-        } else {
-            return null; // No betSide found
-        }
-    }
 }

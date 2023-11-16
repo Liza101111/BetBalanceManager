@@ -26,22 +26,31 @@ public class BettingDataProcessor {
                 Player player = playerRegistry.getPlayer(playerId);
                 Match match = matchRegistry.getMatch(matchId);
 
-                switch (Operation.valueOf(operationStr.toUpperCase())) {
-                    case DEPOSIT:
-                        player.deposit(coinNumber);
-                        break;
-                    case BET:
-                        player.placeBet(coinNumber, match, betSide);
-                        break;
-                    case WITHDRAW:
-                        player.withdraw(coinNumber);
-                        break;
-                    default:
-                        System.out.println("Invalid operation: " + operation);
+                try {
+                    Operation operation = Operation.valueOf(operationStr.toUpperCase());
+                    processPlayerOperation(player, match, operation, coinNumber, betSide);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Invalid operation: " + operationStr);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void processPlayerOperation(Player player, Match match, Operation operation, int coinNumber, String betSide) {
+        switch (operation) {
+            case DEPOSIT:
+                player.deposit(coinNumber);
+                break;
+            case BET:
+                player.placeBet(coinNumber, match, betSide);
+                break;
+            case WITHDRAW:
+                player.withdraw(coinNumber);
+                break;
+            default:
+                System.out.println("Invalid operation: " + operation);
         }
     }
 
@@ -86,17 +95,27 @@ public class BettingDataProcessor {
             List<Player> illegitimatePlayers = playerRegistry.getIllegitimatePlayers();
 
             for (Player player : illegitimatePlayers) {
-                Operation firstIllegalAction = player.getIllegalActions().get(0);
-                String matchId = player.getMatchId() != null ? player.getMatchId().toString() : "null";
-                String betAmount = player.getBetAmount() != null ? String.valueOf(player.getBetAmount()) : "null";
-                String betSide = player.getBetSide() != null ? player.getBetSide() : "null";
+                List<Operation> illegalActions = player.getIllegalActions();
 
-                String outputLine = String.format("%s %s %s %s %s",
-                        player.getPlayerId(), firstIllegalAction, matchId, betAmount, betSide);
+                if(!illegalActions.isEmpty()){
+                    Operation firstIllegalAction = player.getIllegalActions().get(0);
 
-                writer.newLine();
-                writer.write(outputLine);
-                writer.newLine();
+                    UUID matchId = player.getMatchId() != null ? player.getMatchId() : null;
+                    BetInfo betInfo = player.getBetsMap().get(matchId);
+
+                    String matchIdStr = matchId != null ? matchId.toString() : "null";
+                    String betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";
+                    String betSide = betInfo != null ? betInfo.getBetSide(): "null";
+
+                    String outputLine = String.format("%s %s %s %s %s",
+                            player.getPlayerId(), firstIllegalAction, matchIdStr, betAmount, betSide);
+
+                    writer.newLine();
+                    writer.write(outputLine);
+                    writer.newLine();
+                }else {
+                    System.out.println("Player has no illegal actions: " + player.getPlayerId());
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException("Error writing illegitimate players to file", e);
@@ -136,11 +155,8 @@ public class BettingDataProcessor {
             Map<UUID, Match> matches = matchRegistry.getMatches();
             long casinoBalanceChange = calculateCasinoBalance(matches);
 
-
             writer.newLine();
             writer.write(String.valueOf (casinoBalance + casinoBalanceChange));
-
-
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing casino balance to file", e);

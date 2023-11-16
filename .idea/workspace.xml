@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="implement: reading and processing match data">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="implemented calculate casino Balance">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -211,7 +213,84 @@
       <option name="project" value="LOCAL" />
       <updated>1699999615147</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="modified code">
+      <created>1700047477612</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1700047477612</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Add enum class IllegalAction">
+      <created>1700073122529</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1700073122529</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add enum class IllegalAction">
+      <created>1700073170192</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1700073170192</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add IllegalAction set">
+      <created>1700073295832</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1700073295832</updated>
+    </task>
+    <task id="LOCAL-00023" summary="implement getLegitimatePlayers">
+      <created>1700073339974</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1700073339974</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Add method for writing legitimate players">
+      <created>1700073427934</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1700073427934</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add getIllegitimatePlayers method">
+      <created>1700078999906</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1700078999906</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add getMatchId(), getBetAmount(), and getBetSide() methods">
+      <created>1700079053146</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1700079053146</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add writeIllegitimatePlayers">
+      <created>1700079092052</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1700079092052</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add getTotalBets in Match">
+      <created>1700091143523</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1700091143523</updated>
+    </task>
+    <task id="LOCAL-00029" summary="implemented calculate casino Balance">
+      <created>1700091186287</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1700091186287</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,8 +308,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Project set up" />
-    <MESSAGE value="Set up the initial Player and Match class" />
     <MESSAGE value="Added operations-Bet,Deposit,Withdraw for Player" />
     <MESSAGE value="Modified Bet calculation" />
     <MESSAGE value="Add MatchResult Enum class" />
@@ -246,6 +323,16 @@
     <MESSAGE value="Changed MatchResult consistent with match_data" />
     <MESSAGE value="add addMatch method" />
     <MESSAGE value="implement: reading and processing match data" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement: reading and processing match data" />
+    <MESSAGE value="modified code" />
+    <MESSAGE value="Add enum class IllegalAction" />
+    <MESSAGE value="Add IllegalAction set" />
+    <MESSAGE value="implement getLegitimatePlayers" />
+    <MESSAGE value="Add method for writing legitimate players" />
+    <MESSAGE value="Add getIllegitimatePlayers method" />
+    <MESSAGE value="add getMatchId(), getBetAmount(), and getBetSide() methods" />
+    <MESSAGE value="add writeIllegitimatePlayers" />
+    <MESSAGE value="add getTotalBets in Match" />
+    <MESSAGE value="implemented calculate casino Balance" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented calculate casino Balance" />
   </component>
 </project>

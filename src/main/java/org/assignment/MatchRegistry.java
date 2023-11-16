@@ -14,4 +14,8 @@ public class MatchRegistry {
     public void addMatch(Match match){
         matches.put(match.getMatchId(), match);
     }
+
+    public Map<UUID, Match> getMatches() {
+        return matches;
+    }
 }

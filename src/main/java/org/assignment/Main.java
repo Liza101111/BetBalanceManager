@@ -10,6 +10,7 @@ public class Main {
         processPlayerData("C:\\Users\\lixia\\IdeaProjects\\BetBalanceManager\\src\\main\\resources\\player_data.txt",bettingDataProcessor, playerRegistry, matchRegistry);
         processMatchData("C:\\Users\\lixia\\IdeaProjects\\BetBalanceManager\\src\\main\\resources\\match_data.txt", bettingDataProcessor, matchRegistry);
 
+        bettingDataProcessor.writeResults("C:\\Users\\lixia\\IdeaProjects\\BetBalanceManager\\src\\main\\java\\org\\assignment\\results.txt", playerRegistry, matchRegistry);
     }
     private static void processPlayerData(String filePath, BettingDataProcessor bettingDataProcessor, PlayerRegistry playerRegistry, MatchRegistry matchRegistry) {
         bettingDataProcessor.processPlayerData(filePath, playerRegistry, matchRegistry);

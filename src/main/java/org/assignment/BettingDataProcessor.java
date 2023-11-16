@@ -114,19 +114,30 @@ public class BettingDataProcessor {
         }
     }
 
-    private void calculateCasinoBalance(List<Match> matches) {
-        for (Match match : matches) {
+    private void calculateCasinoBalance(Map<UUID, Match> matches) {
+        for (Match match : matches.values()) {
             casinoBalance += calculateMatchResultBalance(match);
         }
     }
 
     public void writeCasinoBalance(String outputFilePath) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-            writer.write((int) casinoBalance);
+            writer.write("Casino Balance: " + casinoBalance);
             writer.newLine();
         } catch (IOException e) {
             throw new RuntimeException("Error writing casino balance to file", e);
         }
+    }
+
+    public void writeResults(String outputFilePath, PlayerRegistry playerRegistry, MatchRegistry matchRegistry) {
+
+        writeLegitimatePlayers(outputFilePath, playerRegistry);
+
+        writeIllegitimatePlayers(outputFilePath, playerRegistry);
+
+        Map<UUID, Match> matches = matchRegistry.getMatches();
+        calculateCasinoBalance(matches);
+        writeCasinoBalance(outputFilePath);
     }
 
 }

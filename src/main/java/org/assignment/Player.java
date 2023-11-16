@@ -10,7 +10,7 @@ public class Player {
     private int totalBets;
     private int totalWins;
     private Set<UUID> placedBets;
-    private List<IllegalAction> illegalActions = new ArrayList<>();
+    private List<Operation> illegalActions = new ArrayList<>();
 
     private Map<UUID, Integer> betAmountsMap = new HashMap<>();
     private Map<UUID, String> betSidesMap = new HashMap<>();
@@ -42,7 +42,7 @@ public class Player {
         return totalWins;
     }
 
-    public List<IllegalAction> getIllegalActions() {
+    public List<Operation> getIllegalActions() {
         return illegalActions;
     }
 
@@ -60,7 +60,7 @@ public class Player {
             balance -= amount;
             System.out.println("Withdrawal successful. New balance: " + balance);
         } else {
-            illegalActions.add(IllegalAction.INSUFFICIENT_BALANCE);
+            illegalActions.add(Operation.WITHDRAW);
             System.out.println("Invalid withdrawal amount or insufficient funds.");
         }
     }
@@ -93,15 +93,15 @@ public class Player {
                     betSidesMap.put(match.getMatchId(), betSide);
                     System.out.println("New balance: " + balance);
                 }else {
-                    illegalActions.add(IllegalAction.INVALID_BET_SIDE);
+                    illegalActions.add(Operation.BET);
                     System.out.println("Invalid bet side.");
                 }
             }else {
-                illegalActions.add(IllegalAction.INSUFFICIENT_BALANCE);
+                illegalActions.add(Operation.BET);
                 System.out.println("Invalid bet amount or insufficient funds.");
             }
         }else{
-            illegalActions.add(IllegalAction.MULTIPLE_BETS_ON_SAME_MATCH);
+            illegalActions.add(Operation.BET);
             System.out.println("Player has already placed a bet on this match.");
         }
     }

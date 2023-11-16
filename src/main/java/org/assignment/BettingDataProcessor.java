@@ -6,6 +6,8 @@ import java.util.*;
 
 public class BettingDataProcessor {
 
+    private Operation operation;
+
     private long casinoBalance = 0;
 
     public void processPlayerData(String playerDataFilePath, PlayerRegistry playerRegistry, MatchRegistry matchRegistry){
@@ -16,7 +18,7 @@ public class BettingDataProcessor {
                 String[] values = line.split(",");
 
                 UUID playerId = UUID.fromString(values[0]);
-                String operation = values[1];
+                String operationStr = values[1];
                 UUID matchId = values.length > 2 && !values[2].isEmpty() ? UUID.fromString(values[2].trim()) : null;
                 int coinNumber = Integer.parseInt(values[3]);
                 String betSide = values.length > 4 ? values[4] : null;
@@ -24,14 +26,14 @@ public class BettingDataProcessor {
                 Player player = playerRegistry.getPlayer(playerId);
                 Match match = matchRegistry.getMatch(matchId);
 
-                switch (operation) {
-                    case "DEPOSIT":
+                switch (Operation.valueOf(operationStr.toUpperCase())) {
+                    case DEPOSIT:
                         player.deposit(coinNumber);
                         break;
-                    case "BET" :
+                    case BET:
                         player.placeBet(coinNumber, match, betSide);
                         break;
-                    case "WITHDRAW":
+                    case WITHDRAW:
                         player.withdraw(coinNumber);
                         break;
                     default:
@@ -84,7 +86,7 @@ public class BettingDataProcessor {
             List<Player> illegitimatePlayers = playerRegistry.getIllegitimatePlayers();
 
             for (Player player : illegitimatePlayers) {
-                IllegalAction firstIllegalAction = player.getIllegalActions().get(0);
+                Operation firstIllegalAction = player.getIllegalActions().get(0);
                 String matchId = player.getMatchId() != null ? player.getMatchId().toString() : "null";
                 String betAmount = player.getBetAmount() != null ? String.valueOf(player.getBetAmount()) : "null";
                 String betSide = player.getBetSide() != null ? player.getBetSide() : "null";
@@ -92,6 +94,7 @@ public class BettingDataProcessor {
                 String outputLine = String.format("%s %s %s %s %s",
                         player.getPlayerId(), firstIllegalAction, matchId, betAmount, betSide);
 
+                writer.newLine();
                 writer.write(outputLine);
                 writer.newLine();
             }
@@ -101,29 +104,44 @@ public class BettingDataProcessor {
     }
 
     private long calculateMatchResultBalance(Match match) {
+        long balanceChange = 0;
 
         switch (match.getResult()) {
             case A:
-                return -match.getRateB().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
+                balanceChange = match.getRateA().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
             case B:
-                return -match.getRateA().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
+                balanceChange = match.getRateB().multiply(BigDecimal.valueOf(match.getTotalBets())).longValue();
             case DRAW:
-                return 0;
+                break;
             default:
                 throw new IllegalArgumentException("Unexpected match result: " + match.getResult());
         }
+
+        return balanceChange;
     }
 
-    private void calculateCasinoBalance(Map<UUID, Match> matches) {
+    private long calculateCasinoBalance(Map<UUID, Match> matches) {
+        long totalBalanceChange = 0;
+
         for (Match match : matches.values()) {
-            casinoBalance += calculateMatchResultBalance(match);
+            totalBalanceChange += calculateMatchResultBalance(match);
         }
+
+        return totalBalanceChange;
     }
 
-    public void writeCasinoBalance(String outputFilePath) {
+    public void writeCasinoBalance(String outputFilePath, MatchRegistry matchRegistry) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
-            writer.write("Casino Balance: " + casinoBalance);
+
+            Map<UUID, Match> matches = matchRegistry.getMatches();
+            long casinoBalanceChange = calculateCasinoBalance(matches);
+
+
             writer.newLine();
+            writer.write(String.valueOf (casinoBalance + casinoBalanceChange));
+
+
+
         } catch (IOException e) {
             throw new RuntimeException("Error writing casino balance to file", e);
         }
@@ -131,13 +149,15 @@ public class BettingDataProcessor {
 
     public void writeResults(String outputFilePath, PlayerRegistry playerRegistry, MatchRegistry matchRegistry) {
 
-        writeLegitimatePlayers(outputFilePath, playerRegistry);
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))) {
+            writeLegitimatePlayers(outputFilePath, playerRegistry);
 
-        writeIllegitimatePlayers(outputFilePath, playerRegistry);
+            writeIllegitimatePlayers(outputFilePath, playerRegistry);
 
-        Map<UUID, Match> matches = matchRegistry.getMatches();
-        calculateCasinoBalance(matches);
-        writeCasinoBalance(outputFilePath);
+            writeCasinoBalance(outputFilePath,matchRegistry);
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing results to file", e);
+        }
     }
 
 }

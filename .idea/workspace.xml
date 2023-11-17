@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="modified">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BetInfo.java" afterDir="false" />
+    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="Adjusted the order of processMatchData and processPlayerData">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +86,8 @@
       <updated>1699952860135</updated>
       <workItem from="1699952861573" duration="23883000" />
       <workItem from="1699994238886" duration="5232000" />
-      <workItem from="1700133884749" duration="12362000" />
+      <workItem from="1700133884749" duration="13605000" />
+      <workItem from="1700234992906" duration="5835000" />
     </task>
     <task id="LOCAL-00001" summary="Project set up">
       <created>1699953361918</created>
@@ -312,7 +313,28 @@
       <option name="project" value="LOCAL" />
       <updated>1700144411008</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Optimized code">
+      <created>1700147641612</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1700147641612</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Optimized code">
+      <created>1700148036682</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1700148036682</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Adjusted the order of processMatchData and processPlayerData">
+      <created>1700236388026</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1700236388026</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,8 +352,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add MatchResult Enum class" />
-    <MESSAGE value="Modified Match class" />
     <MESSAGE value="declared a Set called placedBets to keep track of the matches that one player can only place one bet on one match." />
     <MESSAGE value="optimized code" />
     <MESSAGE value="Add win rate calculation" />
@@ -355,6 +375,8 @@
     <MESSAGE value="implemented calculate casino Balance" />
     <MESSAGE value="implement: Write result" />
     <MESSAGE value="modified" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified" />
+    <MESSAGE value="Optimized code" />
+    <MESSAGE value="Adjusted the order of processMatchData and processPlayerData" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adjusted the order of processMatchData and processPlayerData" />
   </component>
 </project>

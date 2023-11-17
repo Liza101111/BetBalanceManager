@@ -18,39 +18,30 @@ public class BettingDataProcessor {
                 String[] values = line.split(",");
 
                 UUID playerId = UUID.fromString(values[0]);
-                String operationStr = values[1];
+                Operation operation = Operation.valueOf(values[1].toUpperCase());
                 UUID matchId = values.length > 2 && !values[2].isEmpty() ? UUID.fromString(values[2].trim()) : null;
                 int coinNumber = Integer.parseInt(values[3]);
                 String betSide = values.length > 4 ? values[4] : null;
 
                 Player player = playerRegistry.getPlayer(playerId);
-                Match match = matchRegistry.getMatch(matchId);
 
-                try {
-                    Operation operation = Operation.valueOf(operationStr.toUpperCase());
-                    processPlayerOperation(player, match, operation, coinNumber, betSide);
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Invalid operation: " + operationStr);
+                switch (operation) {
+                    case DEPOSIT:
+                        player.deposit(coinNumber);
+                        break;
+                    case BET:
+                        Match match = matchRegistry.getMatch(matchId);
+                        player.placeBet(coinNumber, match, betSide);
+                        break;
+                    case WITHDRAW:
+                        player.withdraw(coinNumber);
+                        break;
+                    default:
+                        System.out.println("Invalid operation: " + operation);
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    private void processPlayerOperation(Player player, Match match, Operation operation, int coinNumber, String betSide) {
-        switch (operation) {
-            case DEPOSIT:
-                player.deposit(coinNumber);
-                break;
-            case BET:
-                player.placeBet(coinNumber, match, betSide);
-                break;
-            case WITHDRAW:
-                player.withdraw(coinNumber);
-                break;
-            default:
-                System.out.println("Invalid operation: " + operation);
         }
     }
 

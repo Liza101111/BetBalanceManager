@@ -90,13 +90,20 @@ public class BettingDataProcessor {
 
                 if(!illegalActions.isEmpty()){
                     Operation firstIllegalAction = player.getIllegalActions().get(0);
-
                     UUID matchId = player.getMatchId() != null ? player.getMatchId() : null;
                     BetInfo betInfo = player.getBetsMap().get(matchId);
 
-                    String matchIdStr = matchId != null ? matchId.toString() : "null";
-                    String betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";
-                    String betSide = betInfo != null ? betInfo.getBetSide(): "null";
+                    String matchIdStr = "null";
+                    String betAmount = "null";
+                    String betSide = "null";
+
+                    if(firstIllegalAction == Operation.WITHDRAW){
+                        betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";
+                    }else{
+                        matchIdStr = matchId != null ? matchId.toString() : "null";
+                        betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";
+                        betSide = betInfo != null ? betInfo.getBetSide(): "null";
+                    }
 
                     String outputLine = String.format("%s %s %s %s %s",
                             player.getPlayerId(), firstIllegalAction, matchIdStr, betAmount, betSide);

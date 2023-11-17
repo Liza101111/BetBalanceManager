@@ -65,7 +65,7 @@ public class Player {
             System.out.println("Withdrawal successful. New balance: " + balance);
         } else {
             illegalActions.add(Operation.WITHDRAW);
-            System.out.println("Invalid withdrawal amount or insufficient funds.");
+            System.out.println("Invalid withdrawal amount or insufficient funds: " + amount);
         }
         return balance;
     }

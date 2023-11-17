@@ -153,8 +153,10 @@ public class BettingDataProcessor {
             Map<UUID, Match> matches = matchRegistry.getMatches();
             long casinoBalanceChange = calculateCasinoBalance(matches);
 
+            casinoBalance += casinoBalanceChange;
+
             writer.newLine();
-            writer.write(String.valueOf (casinoBalance + casinoBalanceChange));
+            writer.write(String.valueOf (casinoBalance));
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing casino balance to file", e);

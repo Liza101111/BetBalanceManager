@@ -18,9 +18,6 @@ public class Match {
         this.result = result;
         this.totalBets = 0;
     }
-    public Match(UUID matchId) {
-        this(matchId, BigDecimal.ONE, BigDecimal.ONE, MatchResult.DRAW);
-    }
 
     public UUID getMatchId() {
         return matchId;

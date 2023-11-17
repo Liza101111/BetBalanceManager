@@ -8,7 +8,12 @@ public class MatchRegistry {
     private Map<UUID, Match> matches = new HashMap<>();
 
     public Match getMatch(UUID matchId){
-        return matches.computeIfAbsent(matchId, Match::new);
+        if (matchId != null){
+            return matches.get(matchId);
+        }
+        else {
+            return null;
+        }
     }
 
     public void addMatch(Match match){

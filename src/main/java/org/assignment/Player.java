@@ -52,12 +52,11 @@ public class Player {
         if (amount > 0) {
             balance += amount;
             System.out.println("Deposit successful. New balance: " + balance);
-            return balance;
         } else {
             illegalActions.add(Operation.DEPOSIT);
             System.out.println("Invalid deposit amount.");
-            return  balance;
         }
+        return balance;
     }
 
     public long withdraw(int amount) {
@@ -129,13 +128,13 @@ public class Player {
 
     private void handleWinningBet(BigDecimal rate, long betAmount, String side) {
         long winnings = BigDecimal.valueOf(betAmount * rate.doubleValue()).longValue();
+        System.out.println("winning amount:"+winnings);
         balance += winnings;
         totalWins++;
         System.out.println("Bet placed on winning side " + side + ". Winnings: " + winnings);
     }
 
     private void handleDrawBet(long betAmount) {
-        balance += betAmount;
         System.out.println("Match ended in a draw. Coins returned.");
     }
 

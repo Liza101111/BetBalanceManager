@@ -141,7 +141,7 @@ public class Player {
     }
 
     private void handleDrawBet(long betAmount) {
-        System.out.println("Match ended in a draw. Coins returned.");
+        System.out.println("Match ended in a draw. Coins returned:" + betAmount);
     }
 
     public BigDecimal getWinRate() {

@@ -35,6 +35,10 @@ public class Match {
         return result;
     }
 
+    public BigDecimal getResultRate() {
+        return result == MatchResult.A ? rateA : result == MatchResult.B ? rateB : BigDecimal.ONE;
+    }
+
     public int getTotalBets() {
         return totalBets;
     }

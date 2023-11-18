@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="Modified">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/MatchRegistry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,19 +34,19 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/lixia/IdeaProjects/BetBalanceManager/src/main/resources",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lixia/IdeaProjects/BetBalanceManager/src/main/resources&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\lixia\IdeaProjects\BetBalanceManager\src\main\resources" />
@@ -89,6 +87,7 @@
       <workItem from="1699994238886" duration="5232000" />
       <workItem from="1700133884749" duration="13605000" />
       <workItem from="1700234992906" duration="5835000" />
+      <workItem from="1700294487167" duration="2597000" />
     </task>
     <task id="LOCAL-00001" summary="Project set up">
       <created>1699953361918</created>
@@ -335,7 +334,35 @@
       <option name="project" value="LOCAL" />
       <updated>1700236388026</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Modified">
+      <created>1700242636714</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1700242636714</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Modified">
+      <created>1700258593987</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1700258593987</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Modified">
+      <created>1700260984311</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1700260984311</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Modified">
+      <created>1700261539945</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1700261539945</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +380,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="declared a Set called placedBets to keep track of the matches that one player can only place one bet on one match." />
     <MESSAGE value="optimized code" />
     <MESSAGE value="Add win rate calculation" />
     <MESSAGE value="Add a new Match constructor to use default values in none are provided" />
@@ -378,7 +404,8 @@
     <MESSAGE value="modified" />
     <MESSAGE value="Optimized code" />
     <MESSAGE value="Adjusted the order of processMatchData and processPlayerData" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted the order of processMatchData and processPlayerData" />
+    <MESSAGE value="Modified" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

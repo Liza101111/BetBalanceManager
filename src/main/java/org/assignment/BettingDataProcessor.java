@@ -98,7 +98,8 @@ public class BettingDataProcessor {
                     String betSide = "null";
 
                     if(firstIllegalAction == Operation.WITHDRAW){
-                        betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";
+                        int withdrawalAmount = player.getIllegalWithdrawalAmount();
+                        betAmount = String.valueOf(withdrawalAmount);
                     }else{
                         matchIdStr = matchId != null ? matchId.toString() : "null";
                         betAmount = betInfo != null ? String.valueOf(betInfo.getBetAmount()) : "null";

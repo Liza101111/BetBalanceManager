@@ -15,6 +15,7 @@ public class Player {
     private Map<UUID, BetInfo> betsMap = new HashMap<>();
     private static final String SIDE_A = "A";
     private static final String SIDE_B = "B";
+    private int illegalWithdrawalAmount;
 
     public Player(UUID playerId) {
         this.playerId = playerId;
@@ -65,9 +66,14 @@ public class Player {
             System.out.println("Withdrawal successful. New balance: " + balance);
         } else {
             illegalActions.add(Operation.WITHDRAW);
+            illegalWithdrawalAmount = amount;
             System.out.println("Invalid withdrawal amount or insufficient funds: " + amount);
         }
         return balance;
+    }
+
+    public int getIllegalWithdrawalAmount() {
+        return illegalWithdrawalAmount;
     }
 
     public void placeBet(int betAmount, Match match, String betSide) {

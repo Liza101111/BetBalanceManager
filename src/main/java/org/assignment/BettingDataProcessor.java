@@ -121,10 +121,10 @@ public class BettingDataProcessor {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath, true))) {
             BigDecimal casinoBalanceChange = calculateCasinoBalance(matchRegistry, playerRegistry);
 
-            BigDecimal casinoBalance = BigDecimal.ZERO.add(casinoBalanceChange);
+            long casinoBalance = casinoBalanceChange.longValue();
 
             writer.newLine();
-            writer.write(casinoBalance.toString());
+            writer.write(String.valueOf(casinoBalance));
 
         } catch (IOException e) {
             throw new RuntimeException("Error writing casino balance to file", e);
@@ -140,18 +140,21 @@ public class BettingDataProcessor {
                 BetInfo betInfo = player.getBetsMap().get(match.getMatchId());
 
                 if (betInfo != null) {
-                    if (match.getResult().toString().equals(betInfo.getBetSide())) {
+                    if (match.getResult().toString().equals(betInfo.getBetSide()) || match.getResult().name().equals(betInfo.getBetSide())) {
                         totalAmountWon = totalAmountWon.add(
                                 BigDecimal.valueOf(betInfo.getBetAmount()).multiply(match.getResultRate())
                         );
-                    } else {
+                    } else if(!match.getResult().equals(MatchResult.DRAW)){
                         totalAmountLost = totalAmountLost.add(BigDecimal.valueOf(betInfo.getBetAmount()));
                     }
                 }
             }
         }
 
-        BigDecimal netBalanceChange = totalAmountWon.subtract(totalAmountLost);
+        BigDecimal netBalanceChange = totalAmountLost.subtract(totalAmountWon);
+        System.out.println("Total Amount Won: " + totalAmountWon);
+        System.out.println("Total Amount Lost: " + totalAmountLost);
+        System.out.println("Net Balance Change: " + netBalanceChange);
         return netBalanceChange;
     }
 

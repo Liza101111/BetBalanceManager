@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="modified for getting IllegalAction withdrawalAmount">
+    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="result">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/results.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,8 @@
       <workItem from="1699994238886" duration="5232000" />
       <workItem from="1700133884749" duration="13605000" />
       <workItem from="1700234992906" duration="5835000" />
-      <workItem from="1700294487167" duration="11938000" />
+      <workItem from="1700294487167" duration="12760000" />
+      <workItem from="1700386066236" duration="2863000" />
     </task>
     <task id="LOCAL-00001" summary="Project set up">
       <created>1699953361918</created>
@@ -371,7 +371,21 @@
       <option name="project" value="LOCAL" />
       <updated>1700315107834</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="modified for calculating casino balance">
+      <created>1700345183597</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1700345183597</updated>
+    </task>
+    <task id="LOCAL-00042" summary="result">
+      <created>1700345307722</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1700345307722</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -389,8 +403,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add win rate calculation" />
-    <MESSAGE value="Add a new Match constructor to use default values in none are provided" />
     <MESSAGE value="created PlayerRegistry and MatchRegistry classes that manage instances of players and matches" />
     <MESSAGE value="implement logic for reading and processing player data" />
     <MESSAGE value="add files" />
@@ -414,7 +426,9 @@
     <MESSAGE value="Adjusted the order of processMatchData and processPlayerData" />
     <MESSAGE value="Modified" />
     <MESSAGE value="modified for getting IllegalAction withdrawalAmount" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified for getting IllegalAction withdrawalAmount" />
+    <MESSAGE value="modified for calculating casino balance" />
+    <MESSAGE value="result" />
+    <option name="LAST_COMMIT_MESSAGE" value="result" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

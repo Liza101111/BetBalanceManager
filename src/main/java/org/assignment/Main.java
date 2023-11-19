@@ -12,6 +12,7 @@ public class Main {
         processPlayerData("src/main/resources/player_data.txt",bettingDataProcessor, playerRegistry, matchRegistry);
         bettingDataProcessor.writeResults("src/main/java/org/assignment/results.txt", playerRegistry, matchRegistry);
     }
+
     private static void processPlayerData(String filePath, BettingDataProcessor bettingDataProcessor, PlayerRegistry playerRegistry, MatchRegistry matchRegistry) {
         bettingDataProcessor.processPlayerData(filePath, playerRegistry, matchRegistry);
     }

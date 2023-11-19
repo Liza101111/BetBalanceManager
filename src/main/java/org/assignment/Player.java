@@ -33,14 +33,6 @@ public class Player {
         return balance;
     }
 
-    public int getTotalBets() {
-        return totalBets;
-    }
-
-    public int getTotalWins() {
-        return totalWins;
-    }
-
     public List<Operation> getIllegalActions() {
         return illegalActions;
     }

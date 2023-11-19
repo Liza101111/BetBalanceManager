@@ -39,11 +39,4 @@ public class Match {
         return result == MatchResult.A ? rateA : result == MatchResult.B ? rateB : BigDecimal.ONE;
     }
 
-    public int getTotalBets() {
-        return totalBets;
-    }
-
-    public void incrementTotalBets() {
-        totalBets++;
-    }
 }

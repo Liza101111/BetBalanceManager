@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="result">
+    <list default="true" id="1aa5d5db-8820-42d7-8519-b369d242af8d" name="Changes" comment="Finally">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/BettingDataProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/results.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/assignment/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +90,7 @@
       <workItem from="1700133884749" duration="13605000" />
       <workItem from="1700234992906" duration="5835000" />
       <workItem from="1700294487167" duration="12760000" />
-      <workItem from="1700386066236" duration="2863000" />
+      <workItem from="1700386066236" duration="3594000" />
     </task>
     <task id="LOCAL-00001" summary="Project set up">
       <created>1699953361918</created>
@@ -385,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700345307722</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Finally">
+      <created>1700389224396</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1700389224396</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -403,7 +411,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created PlayerRegistry and MatchRegistry classes that manage instances of players and matches" />
     <MESSAGE value="implement logic for reading and processing player data" />
     <MESSAGE value="add files" />
     <MESSAGE value="Add methods for reading player data from files" />
@@ -428,7 +435,8 @@
     <MESSAGE value="modified for getting IllegalAction withdrawalAmount" />
     <MESSAGE value="modified for calculating casino balance" />
     <MESSAGE value="result" />
-    <option name="LAST_COMMIT_MESSAGE" value="result" />
+    <MESSAGE value="Finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
